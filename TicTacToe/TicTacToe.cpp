@@ -92,7 +92,7 @@ int main()
    
 
     cout << endl;
-    do
+    if (choice == 1)
     {
     char choiceP1, choiceP2;
     cout << "Player 1 :   X  or  O" << endl;
@@ -108,7 +108,18 @@ int main()
         choiceP2 = 'X';
     }
     board(choiceP1, choiceP2);
-    break;
+    return 0;
     }
-    while (choice == 1);
+    if (choice == 2)
+    {
+       cout << "1. The game is played on a grid that's 3 squares by 3 squares." << endl;
+       cout << "2. You are X, your friend is O. Players take turns putting their marks in empty squares." << endl;
+       cout << "3. The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner." << endl;
+       cout << "4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie." << endl;
+    }
+    if (choice == 0)
+    {
+      cout << "See you soon!";
+      return 0;
+    }
 }
