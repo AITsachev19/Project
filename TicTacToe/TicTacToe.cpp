@@ -77,7 +77,20 @@ int checkWin()
 
 int main()
 {
-    cout << endl << "Tic Tac Toe" << endl << endl;
+    int choice;
+    cout << " | *******  *******   ******      *******     *       ******      *******   ******    ****** |" << endl;
+    cout << " |   ***      ***    **    **       ***      * *     **     **      ***    *      *   *      |"<<endl;
+    cout << " |   ***      ***    **        **   ***     *   *    **         **  ***   *        *  ****** |" <<endl;
+    cout << " |   ***      ***    **    **       ***    *******   **     **      ***    *      *   *      |"<<endl;
+    cout << " |   ***    *******   ******        ***   *       *   ******        ***     ******    ****** |"<<endl;
+    cout << " |                                        [1] Play                                           |" << endl;
+    cout << " |                                        [2] How to Play                                    |       " << endl;
+    cout << " |                                        [0] Quit                                           |" << endl;
+    cout << " |                                    Enter a choice:                                        |  ";
+    cin >> choice;
+    cout << endl;
+    do
+    {
     char choiceP1, choiceP2;
     cout << "Player 1 :   X  or  O" << endl;
     cin >> choiceP1;
@@ -92,4 +105,7 @@ int main()
         choiceP2 = 'X';
     }
     board(choiceP1, choiceP2);
+    break;
+    }
+    while (choice == 1);
 }
