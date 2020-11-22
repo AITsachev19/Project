@@ -84,7 +84,7 @@ int main()
     cout << " |   ***      ***    **    **       ***    *******   **     **      ***    *      *   *      |"<<endl;
     cout << " |   ***    *******   ******        ***   *       *   ******        ***     ******    ****** |"<<endl;
     cout << " |                                        [1] Play                                           |" << endl;
-    cout << " |                                        [2] How to Play                                    |       " << endl;
+    cout << " |                                        [2] How to Play                                    |" << endl;
     cout << " |                                        [0] Quit                                           |" << endl;
     cout << " |                                    Enter a choice:                                        |  ";
     cin >> choice;
