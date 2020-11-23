@@ -2,26 +2,22 @@
 using namespace std;
 
 char square[10] = { 'o',' ',' ',' ',' ',' ',' ',' ',' ',' ' };
+int player = 1;
+char choiceP1, choiceP2;
+int i;
 
 void board(char choiceP1, char choiceP2)
 {
-
     cout << "Player 1 (" << choiceP1 << ")  --  Player 2 (" << choiceP2 << ")" << endl << endl;
     cout << endl;
-
     cout << "           |     |     " << endl;
     cout << "        " << square[1] << "  |  " << square[2] << "  |  " << square[3] << endl;
-
     cout << "      _____|_____|_____" << endl;
     cout << "           |     |     " << endl;
-
     cout << "        " << square[4] << "  |  " << square[5] << "  |  " << square[6] << endl;
-
     cout << "      _____|_____|_____" << endl;
     cout << "           |     |     " << endl;
-
     cout << "        " << square[7] << "  |  " << square[8] << "  |  " << square[9] << endl;
-
     cout << "           |     |     " << endl << endl;
 }
 
@@ -75,26 +71,86 @@ int checkWin()
     }
 }
 
+void markChoice()
+{
+    char mark;
+    int markChoice;
+
+    player = (player % 2) ? 1 : 2;
+
+    cout << "Player " << player << ", enter a number:  ";
+    cin >> markChoice;
+
+    mark = (player == 1) ? choiceP1 : choiceP2;
+
+    if (markChoice == 1 && square[1] == ' ')
+    {
+        square[1] = mark;
+    }
+    else if (markChoice == 2 && square[2] == ' ')
+    {
+        square[2]= mark;
+    }
+    else if (markChoice == 3 && square[3] == ' ')
+    {
+        square[3] = mark;
+    }
+    else if (markChoice == 4 && square[4] == ' ')
+    {
+        square[4] = mark;
+    }
+    else if (markChoice == 5 && square[5] == ' ')
+    {
+        square[5] = mark;
+    }
+    else if (markChoice == 6 && square[6] == ' ')
+    {
+        square[6] = mark;
+    }
+    else if (markChoice == 7 && square[7] == ' ')
+    {
+        square[7] = mark;
+    }
+    else if (markChoice == 8 && square[8] == ' ')
+    {
+        square[8] = mark;
+    }
+    else if (markChoice == 9 && square[9] == ' ')
+    {
+        square[9] = mark;
+    }
+    else
+    {
+        cout << "Invalid move ";
+        player--;
+        cin.ignore();
+        cin.get();
+    }
+
+    i = checkWin();
+    player++;
+}
+
 int main()
 {
-    int choice;
+    int menuChoice;
     cout << " | *******  *******   ******      *******     *       ******      *******   ******    ****** |" << endl;
-    cout << " |   ***      ***    **    **       ***      * *     **     **      ***    *      *   *      |"<<endl;
-    cout << " |   ***      ***    **        **   ***     *   *    **         **  ***   *        *  ****** |" <<endl;
-    cout << " |   ***      ***    **    **       ***    *******   **     **      ***    *      *   *      |"<<endl;
-    cout << " |   ***    *******   ******        ***   *       *   ******        ***     ******    ****** |"<<endl;
+    cout << " |   ***      ***    **    **       ***      * *     **     **      ***    *      *   *      |" << endl;
+    cout << " |   ***      ***    **        **   ***     *   *    **         **  ***   *        *  ****** |" << endl;
+    cout << " |   ***      ***    **    **       ***    *******   **     **      ***    *      *   *      |" << endl;
+    cout << " |   ***    *******   ******        ***   *       *   ******        ***     ******    ****** |" << endl;
     cout << " |                                        [1] Play                                           |" << endl;
-    cout << " |                                        [2] How to Play                                    |       " << endl;
+    cout << " |                                        [2] How to Play                                    |" << endl;
     cout << " |                                        [0] Quit                                           |" << endl;
     cout << " |                                                                                           |" << endl; 
     cout << "                                         Enter a choice: ";
-    cin >> choice;                                       
+    cin >> menuChoice;                                       
    
 
     cout << endl;
-    if (choice == 1)
+
+    if (menuChoice == 1)
     {
-    char choiceP1, choiceP2;
     cout << "Player 1 :   X  or  O" << endl;
     cin >> choiceP1;
     if (choiceP1 == 'X' or choiceP1 == 'x')
@@ -108,16 +164,36 @@ int main()
         choiceP2 = 'X';
     }
     board(choiceP1, choiceP2);
+
+    do
+    {
+      markChoice();
+      board(choiceP1, choiceP2);
+    }while(checkWin() == 2);
+
+    
+
+    if (checkWin() == 1)
+        {
+            cout << "<==   PLAYER " << --player << " WIN   ==>";
+        }
+        else
+        {
+            cout << "<==   GAME DRAW   ==>";
+        }
+    
     return 0;
     }
-    if (choice == 2)
+
+    if (menuChoice == 2)
     {
        cout << "1. The game is played on a grid that's 3 squares by 3 squares." << endl;
        cout << "2. For example, you are X and your friend is O. Players take turns putting their marks in empty squares." << endl;
-       cout << "3. The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner." << endl;
+       cout << "3. The first player to get 3 of their marks in a row (up, down, across, or diagonally) is the winner." << endl;
        cout << "4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie." << endl;
     }
-    if (choice == 0)
+
+    if (menuChoice == 0)
     {
       cout << "See you soon!";
       return 0;
