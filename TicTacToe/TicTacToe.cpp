@@ -6,6 +6,38 @@ int player = 1;
 char choiceP1, choiceP2;
 int i;
 
+void greating()
+{
+    cout << " | *******  *******   ******      *******     *       ******      *******   ******    ****** |" << endl;
+    cout << " |   ***      ***    **    **       ***      * *     **     **      ***    *      *   *      |" << endl;
+    cout << " |   ***      ***    **        **   ***     *   *    **         **  ***   *        *  ****** |" << endl;
+    cout << " |   ***      ***    **    **       ***    *******   **     **      ***    *      *   *      |" << endl;
+    cout << " |   ***    *******   ******        ***   *       *   ******        ***     ******    ****** |" << endl;
+    cout << " |                                        [1] Play                                           |" << endl;
+    cout << " |                                        [2] How to Play                                    |" << endl;
+    cout << " |                                        [0] Quit                                           |" << endl;
+    cout << " |                                                                                           |" << endl;
+    cout << "                                         Enter a choice: ";
+}
+
+int checkInput()
+{
+    int userInput;
+    bool validInput = false;
+    do
+    {
+        cin >> userInput;
+        if (!(validInput = cin.good()))
+        {
+            cout << "The input was invalid. Try again!" << endl;
+            greating();
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+        }
+    } while (!validInput);
+    return userInput;
+}
+
 void board(char choiceP1, char choiceP2)
 {
     cout << "Player 1 (" << choiceP1 << ")  --  Player 2 (" << choiceP2 << ")" << endl << endl;
@@ -133,21 +165,9 @@ void markChoice()
 
 bool mainMenu()
 {
-        cout << " | *******  *******   ******      *******     *       ******      *******   ******    ****** |" << endl;
-        cout << " |   ***      ***    **    **       ***      * *     **     **      ***    *      *   *      |" << endl;
-        cout << " |   ***      ***    **        **   ***     *   *    **         **  ***   *        *  ****** |" << endl;
-        cout << " |   ***      ***    **    **       ***    *******   **     **      ***    *      *   *      |" << endl;
-        cout << " |   ***    *******   ******        ***   *       *   ******        ***     ******    ****** |" << endl;
-        cout << " |                                        [1] Play                                           |" << endl;
-        cout << " |                                        [2] How to Play                                    |" << endl;
-        cout << " |                                        [0] Quit                                           |" << endl;
-        cout << " |                                                                                           |" << endl;
-        cout << "                                         Enter a choice: ";
-        int menuChoice;
-        cin >> menuChoice;
-        cout << endl;
-
-        switch (menuChoice)
+    greating();
+        
+        switch (checkInput())
         {
             case 1:
                 cout << "Player 1 :   X  or  O" << endl;
