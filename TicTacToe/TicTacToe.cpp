@@ -89,7 +89,7 @@ void markChoice()
     }
     else if (markChoice == 2 && square[2] == ' ')
     {
-        square[2]= mark;
+        square[2] = mark;
     }
     else if (markChoice == 3 && square[3] == ' ')
     {
@@ -131,71 +131,80 @@ void markChoice()
     player++;
 }
 
+bool mainMenu()
+{
+        cout << " | *******  *******   ******      *******     *       ******      *******   ******    ****** |" << endl;
+        cout << " |   ***      ***    **    **       ***      * *     **     **      ***    *      *   *      |" << endl;
+        cout << " |   ***      ***    **        **   ***     *   *    **         **  ***   *        *  ****** |" << endl;
+        cout << " |   ***      ***    **    **       ***    *******   **     **      ***    *      *   *      |" << endl;
+        cout << " |   ***    *******   ******        ***   *       *   ******        ***     ******    ****** |" << endl;
+        cout << " |                                        [1] Play                                           |" << endl;
+        cout << " |                                        [2] How to Play                                    |" << endl;
+        cout << " |                                        [0] Quit                                           |" << endl;
+        cout << " |                                                                                           |" << endl;
+        cout << "                                         Enter a choice: ";
+        int menuChoice;
+        cin >> menuChoice;
+        cout << endl;
+
+        switch (menuChoice)
+        {
+            case 1:
+                cout << "Player 1 :   X  or  O" << endl;
+                cin >> choiceP1;
+                if (choiceP1 == 'X' or choiceP1 == 'x')
+                {
+                    cout << endl << "Player 2 :   You are O." << endl << endl;
+                    choiceP2 = 'O';
+                }
+                else if (choiceP1 == 'O' or choiceP1 == 'o')
+                {
+                    cout << endl << "Player 2 :   You are X." << endl << endl;
+                    choiceP2 = 'X';
+                }
+                board(choiceP1, choiceP2);
+
+                do
+                {
+                    markChoice();
+                    board(choiceP1, choiceP2);
+                } while (checkWin() == 2);
+
+
+
+                if (checkWin() == 1)
+                {
+                    cout << "<==   PLAYER " << --player << " WIN   ==>";
+                }
+                else
+                {
+                    cout << "<==   GAME DRAW   ==>";
+                }
+                return true;
+                break;
+            case 2:
+                cout << "1. The game is played on a grid that's 3 squares by 3 squares." << endl;
+                cout << "2. For example, you are X and your friend is O. Players take turns putting their marks in empty squares." << endl;
+                cout << "3. The first player to get 3 of their marks in a row (up, down, across, or diagonally) is the winner." << endl;
+                cout << "4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie." << endl << endl;
+                return true;
+                break;
+            case 0:
+                cout << "See you soon!";
+                return false;
+                break;
+            default:
+                mainMenu();
+                return true;
+                break;
+        }
+}
+
 int main()
 {
-    int menuChoice;
-    cout << " | *******  *******   ******      *******     *       ******      *******   ******    ****** |" << endl;
-    cout << " |   ***      ***    **    **       ***      * *     **     **      ***    *      *   *      |" << endl;
-    cout << " |   ***      ***    **        **   ***     *   *    **         **  ***   *        *  ****** |" << endl;
-    cout << " |   ***      ***    **    **       ***    *******   **     **      ***    *      *   *      |" << endl;
-    cout << " |   ***    *******   ******        ***   *       *   ******        ***     ******    ****** |" << endl;
-    cout << " |                                        [1] Play                                           |" << endl;
-    cout << " |                                        [2] How to Play                                    |" << endl;
-    cout << " |                                        [0] Quit                                           |" << endl;
-    cout << " |                                                                                           |" << endl; 
-    cout << "                                         Enter a choice: ";
-    cin >> menuChoice;                                       
-   
-
-    cout << endl;
-
-    if (menuChoice == 1)
-    {
-    cout << "Player 1 :   X  or  O" << endl;
-    cin >> choiceP1;
-    if (choiceP1 == 'X' or choiceP1 == 'x')
-    {
-        cout << endl << "Player 2 :   You are O." << endl << endl;
-        choiceP2 = 'O';
-    }
-    else if (choiceP1 == 'O' or choiceP1 == 'o')
-    {
-        cout << endl << "Player 2 :   You are X." << endl << endl;
-        choiceP2 = 'X';
-    }
-    board(choiceP1, choiceP2);
-
+    bool exitProgram = true;
     do
     {
-      markChoice();
-      board(choiceP1, choiceP2);
-    }while(checkWin() == 2);
-
-    
-
-    if (checkWin() == 1)
-        {
-            cout << "<==   PLAYER " << --player << " WIN   ==>";
-        }
-        else
-        {
-            cout << "<==   GAME DRAW   ==>";
-        }
-    
-    return 0;
-    }
-
-    if (menuChoice == 2)
-    {
-       cout << "1. The game is played on a grid that's 3 squares by 3 squares." << endl;
-       cout << "2. For example, you are X and your friend is O. Players take turns putting their marks in empty squares." << endl;
-       cout << "3. The first player to get 3 of their marks in a row (up, down, across, or diagonally) is the winner." << endl;
-       cout << "4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie." << endl;
-    }
-
-    if (menuChoice == 0)
-    {
-      cout << "See you soon!";
-      return 0;
-    }
+        exitProgram = mainMenu();
+    } while (exitProgram != false);
 }
