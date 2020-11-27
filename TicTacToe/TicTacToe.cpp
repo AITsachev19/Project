@@ -1,11 +1,6 @@
 #include <iostream>
 using namespace std;
 
-char square[10] = { 'o',' ',' ',' ',' ',' ',' ',' ',' ',' ' };
-int player = 1;
-char choiceP1, choiceP2;
-int i;
-
 void greating()
 {
     cout << " | *******  *******   ******      *******     *       ******      *******   ******    ****** |" << endl;
