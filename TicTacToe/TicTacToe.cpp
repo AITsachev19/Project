@@ -24,7 +24,7 @@ int checkInput()
         cin >> userInput;
         if (!(validInput = cin.good()))
         {
-            cout << "The input was invalid. Try again!" << endl;
+            cout << "The input was invalid. Try again!" << endl << endl;
             greating();
             cin.clear();
             cin.ignore(INT_MAX, '\n');
@@ -217,9 +217,10 @@ bool mainMenu()
 
 int main()
 {
+    int markPosition[9] = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     bool exitProgram = true;
     do
     {
-        exitProgram = mainMenu();
+        exitProgram = mainMenu(markPosition);
     } while (exitProgram != false);
 }
