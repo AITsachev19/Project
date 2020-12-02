@@ -2,6 +2,7 @@
 using namespace std;
 
 char square[9] = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
+int markPosition[9] = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 int player1, player2;
 char choiceP1, choiceP2;
 
@@ -19,10 +20,9 @@ void menu()
     cout << "                                         Enter a choice: ";
 }
 
-void board(char choiceP1, char choiceP2)
+void board()
 {
     cout << "Player 1 (" << choiceP1 << ")  --  Player 2 (" << choiceP2 << ")" << endl << endl;
-    cout << endl;
     cout << "           |     |     " << endl;
     cout << "        " << square[0] << "  |  " << square[1] << "  |  " << square[2] << endl;
     cout << "      _____|_____|_____" << endl;
@@ -34,72 +34,53 @@ void board(char choiceP1, char choiceP2)
     cout << "           |     |     " << endl << endl;
 }
 
-void choosePlayer(char choiceP1, char choiceP2)
-{
-    cout << "Player 1 :   X  or  O" << endl;
-    cin >> choiceP1;
-
-    switch (choiceP1)
-    {
-    case 'X':
-        cout << endl << "Player 2 :   You are O." << endl << endl;
-        choiceP2 = 'O';
-        player1 = 1;
-        player2 = 2;
-        break;
-    case 'O':
-        cout << endl << "Player 2 :   You are X." << endl << endl;
-        choiceP2 = 'X';
-        player1 = 2;
-        player2 = 1;
-        break;
-    default:
-        cout << "The input you entered was invalid. Please try again!" << endl;
-        choosePlayer(choiceP1, choiceP2);
-        break;
-    }
-
-    board(choiceP1, choiceP2);
-}
-
-void markChoice(char square[9], int player, char choice)
+void markChoice(int player, char choice)
 {
     int position;
-    cout << "Player " << player << ", enter a number:  " << endl;
+    cout << "Player " << player << ", enter a number:  ";
     cin >> position;
     switch (position)
     {
-    case 1:
-        square[0] = choice;
-        break;
-    case 2:
-        square[1] = choice;
-        break;
-    case 3:
-        square[2] = choice;
-        break;
-    case 4:
-        square[3] = choice;
-        break;
-    case 5:
-        square[4] = choice;
-        break;
-    case 6:
-        square[5] = choice;
-        break;
-    case 7:
-        square[6] = choice;
-        break;
-    case 8:
-        square[7] = choice;
-        break;
-    case 9:
-        square[8] = choice;
-        break;
-    default:
-        cout << "The input you entered was invalid. Please try again!" << endl;
-        markChoice(square, player, choice);
-        break;
+        case 1:
+            square[0] = choice;
+            board();
+            break;
+        case 2:
+            square[1] = choice;
+            board();
+            break;
+        case 3:
+            square[2] = choice;
+            board();
+            break;
+        case 4:
+            square[3] = choice;
+            board();
+            break;
+        case 5:
+            square[4] = choice;
+            board();
+            break;
+        case 6:
+            square[5] = choice;
+            board();
+            break;
+        case 7:
+            square[6] = choice;
+            board();
+            break;
+        case 8:
+            square[7] = choice;
+            board();
+            break;
+        case 9:
+            square[8] = choice;
+            board();
+            break;
+        default:
+            cout << "The input you entered was invalid. Please try again!" << endl;
+            markChoice(player, choice);
+            break;
     }
 }
 
@@ -115,17 +96,17 @@ void game()
         if (turnSwapper % 2 == 0)
         {
             //player1 turn
-            player = player1;
+            player = 1;
             choice = choiceP1;
-            markChoice(square, player, choice);
+            markChoice(player, choice);
             turnSwapper++;
         }
         else
         {
             //player2 turn
-            player = player2;
+            player = 2;
             choice = choiceP2;
-            markChoice(square, player, choice);
+            markChoice(player, choice);
             turnSwapper++;
         }
     }
@@ -135,23 +116,53 @@ void game()
         if (turnSwapper % 2 == 0)
         {
             //player1 turn
-            player = player1;
+            player = 1;
             choice = choiceP1;
-            markChoice(square, player, choice);
+            markChoice(player, choice);
             turnSwapper++;
         }
         else
         {
             //player2 turn
-            player = player2;
+            player = 2;
             choice = choiceP2;
-            markChoice(square, player, choice);
+            markChoice(player, choice);
             turnSwapper++;
         }
     }
+    game();
 }
 
-bool mainMenu(char square[])
+void choosePlayer()
+{
+    cout << "Player 1 :   X  or  O" << endl;
+    cin >> choiceP1;
+
+    switch (choiceP1)
+    {
+        case 'X':
+            cout << endl << "Player 2 :   You are O." << endl << endl;
+            choiceP2 = 'O';
+            player1 = 1;
+            player2 = 2;
+            break;
+        case 'O':
+            cout << endl << "Player 2 :   You are X." << endl << endl;
+            choiceP2 = 'X';
+            player1 = 2;
+            player2 = 1;
+            break;
+        default:
+            cout << "The input you entered was invalid. Please try again!" << endl;
+            choosePlayer();
+            break;
+    }
+
+    board();
+    game();
+}
+
+bool mainMenu()
 {
     menu();
     int menuChoice;
@@ -159,8 +170,7 @@ bool mainMenu(char square[])
     switch (menuChoice)
     {
     case 1:
-        choosePlayer(choiceP1, choiceP2);
-        game();
+        choosePlayer();
         return true;
         break;
     case 2:
@@ -177,7 +187,7 @@ bool mainMenu(char square[])
         break;
     default:
         cout << "The input you entered was invalid. Please try again!" << endl;
-        mainMenu(square);
+        mainMenu();
         return true;
         break;
     }
@@ -188,6 +198,6 @@ int main()
     bool exitProgram = true;
     do
     {
-        exitProgram = mainMenu(square);
+        exitProgram = mainMenu();
     } while (exitProgram != false);
 }
