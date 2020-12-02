@@ -2,9 +2,9 @@
 using namespace std;
 
 char square[9] = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
-int markPosition[9] = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 int player1, player2;
 char choiceP1, choiceP2;
+int turnSwapper = 0;
 
 void menu()
 {
@@ -87,7 +87,6 @@ void markChoice(int player, char choice)
 void game()
 {
     //bool endGame = false;
-    int turnSwapper = 0;
     int player;
     char choice;
     //player1 = x and player2 = o
@@ -96,10 +95,11 @@ void game()
         if (turnSwapper % 2 == 0)
         {
             //player1 turn
+            turnSwapper++;
             player = 1;
             choice = choiceP1;
             markChoice(player, choice);
-            turnSwapper++;
+            
         }
         else
         {
@@ -169,27 +169,27 @@ bool mainMenu()
     cin >> menuChoice;
     switch (menuChoice)
     {
-    case 1:
-        choosePlayer();
-        return true;
-        break;
-    case 2:
-        cout << endl;
-        cout << "1. The game is played on a grid that's 3 squares by 3 squares." << endl;
-        cout << "2. For example, you are X and your friend is O. Players take turns putting their marks in empty squares." << endl;
-        cout << "3. The first player to get 3 of their marks in a row (up, down, across, or diagonally) is the winner." << endl;
-        cout << "4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie." << endl << endl << endl;
-        return true;
-        break;
-    case 0:
-        cout << "See you soon!";
-        return false;
-        break;
-    default:
-        cout << "The input you entered was invalid. Please try again!" << endl;
-        mainMenu();
-        return true;
-        break;
+        case 1:
+            choosePlayer();
+            return true;
+            break;
+        case 2:
+            cout << endl;
+            cout << "1. The game is played on a grid that's 3 squares by 3 squares." << endl;
+            cout << "2. For example, you are X and your friend is O. Players take turns putting their marks in empty squares." << endl;
+            cout << "3. The first player to get 3 of their marks in a row (up, down, across, or diagonally) is the winner." << endl;
+            cout << "4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie." << endl << endl << endl;
+            return true;
+            break;
+        case 0:
+            cout << "See you soon!";
+            return false;
+            break;
+        default:
+            cout << "The input you entered was invalid. Please try again!" << endl;
+            mainMenu();
+            return true;
+            break;
     }
 }
 
@@ -201,3 +201,85 @@ int main()
         exitProgram = mainMenu();
     } while (exitProgram != false);
 }
+
+
+
+/*void checkWinner(int i)
+{
+    switch (square[i])
+    {
+        case 1:
+            cout << "PLAYER 1 WINS" << endl;
+            break;
+        case 2:
+            cout << "PLAYER 2 WINS" << endl;
+            break;
+        default:
+            break;
+    }
+}
+
+int checkWin()
+{
+    for (int i = 0; i < 9; i += 3)
+    {
+        if (square[i] == square[i + 1] && square[i + 1] == square[i + 2])
+        {
+            /*if (square[i] == choiceP1)
+            {
+                cout << "PLAYER 1 WINS!" << endl;
+            }
+            else
+            {
+                cout << "PLAYER 2 WINS!" << endl;
+            }
+
+            switch (square[i])
+                case choiceP1:
+                    cout << "PLAYER 1 WINS!" << endl;
+                    break;
+                case choiceP2:
+                    cout << "PLAYER 2 WINS!" << endl;
+                    break;
+        }
+    }
+    for (int i = 0; i < 9; i++)
+    {
+        if (square[i] == square[i + 3] && square[i + 3] == square[i + 6])
+        {
+            switch (square[i])
+                case choiceP1:
+                    cout << "PLAYER 1 WINS!" << endl;
+                    break;
+                case choiceP2:
+                    cout << "PLAYER 2 WINS!" << endl;
+                    break;
+        }
+    }
+    for (int i = 0; i < 9; )
+    {
+        if (square[i] == square[i + 4] && square[i + 4] == square[i + 8])
+        {
+            switch (square[i])
+                case choiceP1:
+                    cout << "PLAYER 1 WINS!" << endl;
+                    break;
+                case choiceP2:
+                    cout << "PLAYER 2 WINS!" << endl;
+                    break;
+        }
+    }
+    for (int i = 2; i < 9; )
+    {
+        if (square[i] == square[i + 2] && square[i + 2] == square[i + 4])
+        {
+            switch (square[i])
+                case choiceP1:
+                    cout << "PLAYER 1 WINS!" << endl;
+                    break;
+                case choiceP2:
+                    cout << "PLAYER 2 WINS!" << endl;
+                    break;
+        }
+    }
+}*/
