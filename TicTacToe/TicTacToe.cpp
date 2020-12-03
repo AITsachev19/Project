@@ -9,6 +9,7 @@ int turnSwapper = 0;
 int turnCounter = 0;
 int winner, loser;
 
+//cout the menu of the game
 void menu()
 {
     cout << " | *******  *******   ******      *******     *       ******      *******   ******    ****** |" << endl;
@@ -23,6 +24,7 @@ void menu()
     cout << "                                         Enter a choice: ";
 }
 
+//cout the grid of the game
 void board()
 {
     cout << "Player 1 (" << choiceP1 << ")  --  Player 2 (" << choiceP2 << ")" << endl << endl;
@@ -37,6 +39,7 @@ void board()
     cout << "           |     |     " << endl << endl;
 }
 
+//checking if anyone won
 void checkWin(int player)
 {
     if (square[0] == square[1] && square[1] == square[2] && square[0] != ' ')
@@ -151,6 +154,7 @@ void checkWin(int player)
     
 }
 
+//marking the player's choice with the player's symbol
 void markChoice(int player, char choice)
 {
     int position;
@@ -282,6 +286,7 @@ void markChoice(int player, char choice)
     }
 }
 
+//swapping players' turns
 void turnSwap()
 {
     //bool endGame = false;
@@ -346,6 +351,7 @@ void turnSwap()
     turnSwap();
 }
 
+//choosing the symbol players are going to play with
 void choosePlayer()
 {
     cout << "Player 1 :   X  or  O" << endl;
@@ -375,6 +381,7 @@ void choosePlayer()
     turnSwap();
 }
 
+//menu and menu choice
 bool mainMenu()
 {
     menu();
@@ -391,7 +398,7 @@ bool mainMenu()
             cout << "1. The game is played on a 3 by 3 squares grid." << endl;
             cout << "2. For example, you are X and your friend is O. Players take turns putting their marks in empty squares." << endl;
             cout << "3. The first player to get 3 of their marks in a row (up, down, across, or diagonally) is the winner." << endl;
-            cout << "4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie." << endl << endl << endl;
+            cout << "4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie." << endl << endl;
             cout << "5. This is how the numbers players have to enter correspond with the grid: " << endl;
             cout << "           |     |     " << endl;
             cout << "        1  |  2  |  3  " << endl;
