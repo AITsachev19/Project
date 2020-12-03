@@ -9,8 +9,6 @@ int turnSwapper = 0;
 int turnCounter = 0;
 int winner, loser;
 
-bool mainMenu();
-
 void menu()
 {
     cout << " | *******  *******   ******      *******     *       ******      *******   ******    ****** |" << endl;
